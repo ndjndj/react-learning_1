@@ -22,6 +22,12 @@ class InputForm extends React.Component {
     });
   }
 
+  handleDelete(id) {
+    const { todoList } = this.state;
+    const newTodoList = todoList.filter(element => element.id != id);
+    this.setState({todoList: newTodoList});
+  }
+
   render() {
     const { todoList } = this.state;
     return (
@@ -37,7 +43,9 @@ class InputForm extends React.Component {
             element => (
               <TodoElement
                 key={element.id}
-                element={element.content}
+                element={element}
+                onDelete={id => this.handleDelete(id)}
+                {...this.state}
               />
             )
           )}
