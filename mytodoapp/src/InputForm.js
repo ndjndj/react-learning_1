@@ -1,4 +1,6 @@
 import React from 'react';
+import TodoElement from './TodoElement.js';
+import AddTodo from './AddTodo.js';
 
 class InputForm extends React.Component {
   constructor(){
@@ -9,34 +11,36 @@ class InputForm extends React.Component {
     };
   }
 
-  onChange(e) {
-    this.setState({value: e.target.value});
+  onChange(keyvalue) {
+    this.setState(keyvalue);
   }
 
-  add() {
+  add(todoElement) {
     this.setState({
-      todoList: this.state.todoList.concat(this.state.value),
+      todoList: this.state.todoList.concat(todoElement),
       value: "",
     });
   }
 
   render() {
-    const todoListNode = this.state.todoList.map((todo, idx) => {
-      return <li key={idx}>{todo}</li>
-    });
+    const { todoList } = this.state;
     return (
       <div>
         <h1>TODO App</h1>
-        <div>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={e => this.onChange(e)}
-          />
-        </div>
-        <button onClick={() => this.add()}>追加</button>
+        <AddTodo
+          {...this.state}
+          onChange={keyvalue => this.onChange(keyvalue)}
+          add={todoElement => this.add(todoElement)}
+        />
         <ul>
-          {todoListNode}
+          {todoList.map(
+            element => (
+              <TodoElement
+                key={element.id}
+                element={element.content}
+              />
+            )
+          )}
         </ul>
       </div>
     );
