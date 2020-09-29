@@ -13,7 +13,7 @@ class Timer extends Component {
   }
 
   start() {
-    this.timer = setInterval(() => this.forceUpdate(), 1000);
+    this.timer = setInterval(() => this.update(), 1000);
   }
 
   stop() {
