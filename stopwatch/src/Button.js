@@ -14,6 +14,7 @@ const Root = styled.button`
   width: 100px;
   height: 50px;
   font-size: 20px;
+  border-radius: 15px;
   color: #fff;
   &:hover {
     cursor: pointer;
