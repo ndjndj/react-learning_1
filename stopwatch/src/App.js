@@ -3,16 +3,26 @@ import './App.css';
 import Timer from './Timer.js';
 import Button from './Button.js';
 import styled from 'styled-components';
+import TogglButton from './ToggleButton';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.timerRef = React.createRef();
+  }
+
+  incChild() {
+    this.timerRef.current.retBtnText();
+  }
+
   render() {
     return (
       <Root>
         <Title>React StopWatch</Title>
         <Timer ref='timer'/>
         <Unit>
-          <Button text='start' bgColor='#4169e1' handleClick={() => this.refs.timer.start()} />
-          <Button text='stop' bgColor='#dc143c' handleClick={() => this.refs.timer.stop()} />
+          <TogglButton bgColor='#ccc' handleClick={() => this.refs.timer.toggl()} />
+          <Button text={this.refs.timer} bgColor='#4169e1' handleClick={() => this.refs.timer.toggl()} />
           <Button text='reset' bgColor='#808080' handleClick={() => this.refs.timer.reset()} />
         </Unit>
       </Root>

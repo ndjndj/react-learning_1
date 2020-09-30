@@ -8,8 +8,26 @@ class Timer extends Component {
       hours: '00',
       minutes: '00',
       seconds: '00',
-      time: 0
+      time: 0,
+      startFlg: true,
+      btnText: 'default'
     };
+  }
+
+  retBtnText() {
+    let retText = this.state.startFlg ? 'OFF' : 'ON';
+    this.setState({btnText: retText});
+    return this.btnText;
+  }
+
+  toggl() {
+    if (this.state.startFlg) {
+      this.start();
+    } else {
+      this.stop();
+    }
+    this.retBtnText();
+    this.setState({startFlg: !(this.state.startFlg)});
   }
 
   start() {
