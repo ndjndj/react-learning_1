@@ -17,10 +17,15 @@ class MainText extends React.Component {
     this.setState({text: text});
   }
 
+  convertText(text) {
+    let retText = text.replace(/\n/g, '<br>');
+    return retText;
+  }
+
   render() {
     return(
       <Main>
-        {this.props.text}
+        {this.convertText(this.props.text)}
       </Main>
     );
   }
